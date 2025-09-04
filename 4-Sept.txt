@@ -1,6 +1,6 @@
 
 //3516. Find Closest Person
-method-direct logic 
+method-direct logic (only difference and compare and remember to use abs() for else wrong answer will occur)
 int findClosest(int x, int y, int z) {
         int dist1=abs(z-x);///for 1st to 3rd person
         int dist2=abs(z-y);//for 2nd to 3rd person
