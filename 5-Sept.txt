@@ -24,3 +24,26 @@ typedef long long ll;
         }
         return -1;
     }
+
+
+    //method-2
+    ///taking limited constraint t<=36
+    typedef long long ll;
+    int makeTheIntegerZero(int num1, int num2) {
+        int t=1;
+
+       while(t<=36){
+            ll val=(ll)num1-(ll)t*num2;
+
+            if(val<0){
+                return -1;
+            }
+
+            if(__builtin_popcountll(val)<=t && t<=val){
+                return t;
+            }
+
+            t++;
+       }
+       return -1;
+    }
