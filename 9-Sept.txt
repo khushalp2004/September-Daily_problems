@@ -1,5 +1,7 @@
 
+
 //2327. Number of People Aware of a Secret
+//using dp 
 
 int dp[1001];
     int MOD=1000000007;
