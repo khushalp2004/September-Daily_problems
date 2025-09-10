@@ -1,5 +1,9 @@
 
 //1733. Minimum Number of People to Teach
+//use set - sad
+/////check if users can talk if cant talk insert into sad set
+///now check most known language among the can't talk users
+//return total sad - most known language
 int minimumTeachings(int n, vector<vector<int>>& languages, vector<vector<int>>& friendships) {
         unordered_set<int> sad;
 
