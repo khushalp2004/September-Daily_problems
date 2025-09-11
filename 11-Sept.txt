@@ -1,6 +1,9 @@
 
 
 ///2785. Sort Vowels in a String
+
+/////store vowels in the vector
+////keep the consonants as it is as it is in s just replace the vowels with the sorted ones
 bool isVowel(char c){
         c=tolower(c);
         if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u'){
