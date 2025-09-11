@@ -1,0 +1,29 @@
+
+
+///2785. Sort Vowels in a String
+bool isVowel(char c){
+        c=tolower(c);
+        if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u'){
+            return true;
+        }
+        return false;
+    }
+    string sortVowels(string s) {
+        vector<char> vowels;
+        for(char c: s){
+            if(isVowel(c)){
+                vowels.push_back(c);
+            }
+        }
+
+        sort(vowels.begin(),vowels.end());
+        ///replace already existing vowels at the place with the sorted ones
+        int idx=0;
+        for(char &c: s){
+            if(isVowel(c)){
+                c=vowels[idx];
+                idx++;
+            }
+        }
+        return s;
+    }
