@@ -1,6 +1,7 @@
 
 ////3227. Vowels Game in a String
-
+/////directly check for isvowel available or not 
+///if Vowel is available in string return true,else return false;
 bool isVowel(char c){
         if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u'){
             return true;
