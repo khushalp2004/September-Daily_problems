@@ -19,7 +19,7 @@ bool isVowel(char c){
                 conMap[c]++;
             }
         }
-        
+         
         //find maximum occuring vowel count
         int maxFreqVow=0;
         for(auto &p: vowMap){
