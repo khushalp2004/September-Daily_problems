@@ -1,6 +1,6 @@
 
 ///3005. Count Elements With Maximum Frequency
-
+//using unordered_map store their Frequencies 
 int maxFrequencyElements(vector<int>& nums) {
         unordered_map<int,int> mp;
         for(int num: nums){
