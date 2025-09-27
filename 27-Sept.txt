@@ -1,0 +1,67 @@
+
+///812. Largest Triangle Area
+
+struct Point {
+        double x, y;
+    };
+
+    // Cross product
+    double cross(const Point& A, const Point& B, const Point& C) {
+        return (B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x);
+    }
+
+    // Convex Hull using Graham Scan / Monotone Chain
+    vector<Point> convexHull(vector<Point>& pts) {
+        sort(pts.begin(), pts.end(), [](Point a, Point b) {
+            return a.x < b.x || (a.x == b.x && a.y < b.y);
+        });
+
+        vector<Point> hull;
+        // Lower hull
+        for (auto& p : pts) {
+            while (hull.size() >= 2 &&
+                   cross(hull[hull.size() - 2], hull.back(), p) <= 0)
+                hull.pop_back();
+            hull.push_back(p);
+        }
+        // Upper hull
+        int lowerSize = hull.size();
+        for (int i = pts.size() - 2; i >= 0; i--) {
+            while (hull.size() > lowerSize &&
+                   cross(hull[hull.size() - 2], hull.back(), pts[i]) <= 0)
+                hull.pop_back();
+            hull.push_back(pts[i]);
+        }
+        hull.pop_back(); // last point = first point
+        return hull;
+    }
+
+    // Area of triangle (absolute value of cross product / 2)
+    double area(const Point& A, const Point& B, const Point& C) {
+        return fabs(cross(A, B, C)) / 2.0;
+    }
+    double largestTriangleArea(vector<vector<int>>& points) {
+        vector<Point> pts;
+        for (auto& p : points)
+            pts.push_back({(double)p[0], (double)p[1]});
+
+        // Get convex hull
+        vector<Point> hull = convexHull(pts);
+        int n = hull.size();
+        if (n < 3)
+            return 0.0;
+
+        double maxArea = 0.0;
+
+        // Rotating calipers to find max area triangle
+        for (int i = 0; i < n; i++) {
+            int k = i + 2;
+            for (int j = i + 1; j < n; j++) {
+                while (k < n && area(hull[i], hull[j], hull[k]) <
+                                    area(hull[i], hull[j], hull[(k + 1) % n]))
+                    k++;
+                maxArea = max(maxArea, area(hull[i], hull[j], hull[k % n]));
+            }
+        }
+        return maxArea;
+    }
