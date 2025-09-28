@@ -1,0 +1,17 @@
+
+///976. Largest Perimeter Triangle
+///sort in descending choose first 3 element if not valid ,slide the window
+int largestPerimeter(vector<int>& nums) {
+        int n=nums.size();
+        sort(nums.rbegin(),nums.rend());
+        for(int i=0;i<n-2;i++){
+            int ele1=nums[i];
+            int ele2=nums[i+1];
+            int ele3=nums[i+2];
+
+            if(ele1<(ele2+ele3)){
+                return ele1+ele2+ele3;
+            }
+        }
+        return 0;
+    }
